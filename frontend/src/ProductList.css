@@ -1,0 +1,255 @@
+/* Variables globales para una paleta de colores y estilos modernos */
+:root {
+  --primary-color: #5A67D8;
+  --secondary-color: #4fd982; /* verde principal para el botón de compra */
+  --secondary-color-hover: #3cc46b; /* verde más oscuro para hover */
+  --accent-color: #f44336;
+  --bg-color: #f7fafc;
+  --card-bg: #ffffff;
+  --text-color: #2d3748;
+  --subtext-color: #718096;
+  --border-radius: 12px;
+  --transition: 0.3s;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos globales */
+body {
+  background: linear-gradient(135deg, #f7fafc, #edf2f7);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+
+/* Contenedor principal de la página */
+.product-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Botón de logout, reposicionado en la esquina superior y en rojo */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: var(--border-radius);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition);
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Barra de búsqueda centrada y estilizada */
+.search-bar-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.search-input {
+  width: 60%;
+  max-width: 600px;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.search-input:focus {
+  outline: none;
+  transform: scale(1.02);
+}
+
+/* Loader con tipografía sutil */
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px;
+  color: var(--subtext-color);
+}
+
+/* Grilla de productos con 4 elementos por fila */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* Tarjeta de producto con efecto hover */
+.product-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen del producto, adaptada a un alto mayor */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Información del producto */
+.product-info {
+  padding: 20px;
+}
+
+.product-name {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.product-code,
+.product-price {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: var(--subtext-color);
+}
+
+/* Mensaje de sin resultados */
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--subtext-color);
+  margin-top: 60px;
+}
+
+/* Sección de paginación con botones destacados */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.pagination-button {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: var(--border-radius);
+  margin: 0 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.pagination-button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.pagination-button:disabled {
+  background-color: #b2b7c1;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* Sección de productos comprados previamente */
+.purchased-section {
+  margin-top: 60px;
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.purchased-section h3 {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+/* Contenedor de productos comprados, con 4 elementos por fila */
+.purchased-items-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* Tarjeta para cada producto comprado */
+.purchased-item {
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.purchased-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.purchased-item-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Detalles del producto comprado */
+.purchased-item-details {
+  padding: 20px;
+}
+
+.purchased-item-details h4 {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.purchased-item-details p {
+  font-size: 1rem;
+  color: var(--subtext-color);
+  margin: 5px 0;
+}
+
+/* Botón de compra con efecto hover y sombra */
+.purchase-button {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: var(--border-radius);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+  box-shadow: var(--shadow);
+  margin: 20px;
+}
+
+.purchase-button:hover {
+  background-color: var(--secondary-color-hover);
+  transform: scale(1.05);
+}
+
+.purchase-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}

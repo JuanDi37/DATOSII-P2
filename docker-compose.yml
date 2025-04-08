@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - backend_network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.5.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+      - elasticsearch
+    environment:
+      DATABASE_URL: postgresql://user:password@db/postgres
+    ports:
+      - "8000:8000"
+    networks:
+      - backend_network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  redis:
+    image: redis:latest
+    container_name: redis-login
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: always
+      
+
+networks:
+  backend_network:
+    driver: bridge
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  postgres_data:
+    driver: local
+  redis-data:
+    driver: local
